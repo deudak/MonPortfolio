@@ -1,0 +1,5 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+Sitemap: https://mon-portfolio-deudak.vercel.app/sitemap.xml
