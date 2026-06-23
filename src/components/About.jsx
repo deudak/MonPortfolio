@@ -23,9 +23,13 @@ export default function About() {
         <div className="about__grid">
           <div className="about__intro scroll-reveal">
             <div className="about__avatar">
-              <span className="about__avatar-text">DY</span>
+              <img
+                src="/maphotos.jpeg"
+                alt="DEUDAK YANGOUE MIGUEL"
+                className="about__avatar-img"
+              />
             </div>
-            <h3 className="about__name">DEUDAK YANGOUE MIUEL</h3>
+            <h3 className="about__name">DEUDAK YANGOUE MIGUEL</h3>
             <p className="about__role">Étudiant en Génie Logiciel</p>
             <div className="about__socials">
               <a href="https://github.com/deudak" target="_blank" rel="noopener noreferrer" className="about__social-link" aria-label="GitHub">
@@ -69,6 +73,21 @@ export default function About() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="about__cta">
+              <a
+                href="/CV_Deudak_Yangoue_Miguel.pdf"
+                download="CV_Deudak_Yangoue_Miguel.pdf"
+                className="btn btn--primary"
+              >
+                <span>Télécharger mon CV</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>

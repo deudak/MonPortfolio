@@ -34,20 +34,67 @@ const contactInfo = [
   },
 ]
 
+// Pour recevoir réellement les e-mails sur deudakm2005@gmail.com :
+// 1. Créez un compte gratuit sur https://formspree.io/
+// 2. Créez un nouveau formulaire et copiez son ID (ex: "xvgonzry")
+// 3. Remplacez 'YOUR_FORMSPREE_FORM_ID' ci-dessous par cet ID
+const FORMSPREE_FORM_ID = 'xgojejgl'
+
 export default function Contact() {
   const sectionRef = useScrollReveal()
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState(null)
+  const emailAddress = 'deudakm2005@gmail.com'
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setStatus('success')
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    setTimeout(() => setStatus(null), 4000)
+
+    // Fallback mailto si Formspree n'est pas encore configuré
+    if (!FORMSPREE_FORM_ID || FORMSPREE_FORM_ID === 'YOUR_FORMSPREE_FORM_ID') {
+      const mailto = `mailto:${emailAddress}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `Nom: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+      )}`
+      window.location.href = mailto
+      setStatus('success')
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      setTimeout(() => setStatus(null), 4000)
+      return
+    }
+
+    setStatus('sending')
+    try {
+      const formId = FORMSPREE_FORM_ID.includes('/')
+        ? FORMSPREE_FORM_ID.split('/').pop()
+        : FORMSPREE_FORM_ID
+
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+    }
+    setTimeout(() => setStatus(null), 5000)
   }
 
   return (
@@ -148,16 +195,24 @@ export default function Contact() {
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn--primary contact__submit">
-              <span>Envoyer le message</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
+            <button type="submit" className="btn btn--primary contact__submit" disabled={status === 'sending'}>
+              <span>{status === 'sending' ? 'Envoi en cours...' : 'Envoyer le message'}</span>
+              {status !== 'sending' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              )}
             </button>
 
             {status === 'success' && (
               <div className="contact__success">
                 <span>✅</span> Message envoyé avec succès ! Je vous répondrai rapidement.
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="contact__error">
+                <span>❌</span> Une erreur est survenue lors de l'envoi. Veuillez réessayer.
               </div>
             )}
           </form>

@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="footer__container">
         <div className="footer__top">
           <div className="footer__brand">
-            <span className="footer__logo">DY</span>
+            <img src="/logo.png" alt="Logo" className="footer__logo-img" />
             <span className="footer__name">DEUDAK YANGOUE</span>
             <p className="footer__tagline">
               Étudiant en Génie Logiciel · Développeur passionné
@@ -66,7 +66,7 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {new Date().getFullYear()} DEUDAK YANGOUE MIUEL — Fait avec
+            © {new Date().getFullYear()} DEUDAK YANGOUE MIGUEL — Fait avec
             <span className="footer__heart" aria-label="amour"> ❤️</span> et React.
           </p>
         </div>

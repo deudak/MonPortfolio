@@ -1,15 +1,39 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import ProjectCarousel from './ProjectCarousel'
 
 const projects = [
   {
-    title: 'TaskFlow',
+    title: 'KamerWork',
     description:
-      'Application de gestion de tâches collaborative avec authentification, tableaux Kanban, et notifications en temps réel.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
+      'Projet photo KamerWork avec galerie défilante horizontale pour valoriser les prises de vue et les réalisations visuelles.',
+    technologies: ['React', 'CSS', 'LARAVEL', 'MYSQL', "VITE"],
+    color: '#ec4899',
+    github: 'https://github.com/deudak',
+    demo: '#',
+    icon: '📸',
+    images: ['/kamerwork1.JPG', '/kamerwork2.JPG', '/kamerwork3.JPG', '/kamerwork4.JPG'],
+  },
+  {
+    title: 'Modellux',
+    description:
+      'Site haut de gamme Modellux, avec présentation de projet et photos en défilement horizontal pour un look élégant.',
+    technologies: ['React', 'CSS', 'PHP', 'MYSQL'],
+    color: '#f59e0b',
+    github: 'https://github.com/deudak',
+    demo: '#',
+    icon: '✨',
+    images: ['/modellux.JPG', '/modellux2.JPG'],
+  },
+  {
+    title: 'Gestion de Stock',
+    description:
+      'Application de gestion de stock collaborative avec authentification, tableaux de bord, et notifications en temps réel.',
+    technologies: ['javascript', 'Bootstrap', 'MYSQL', 'PHP'],
     color: '#7c3aed',
     github: 'https://github.com/deudak',
     demo: '#',
     icon: '📋',
+    images : ['/geststock1.JPG', '/geststock2.JPG'],
   },
   {
     title: 'WeatherApp',
@@ -102,6 +126,10 @@ export default function Projects() {
               <div className="project-card__body">
                 <h3 className="project-card__title">{project.title}</h3>
                 <p className="project-card__description">{project.description}</p>
+                {project.images && project.images.length > 0 && (
+                  <ProjectCarousel images={project.images} title={project.title} />
+                )}
+
                 <div className="project-card__tags">
                   {project.technologies.map((tech) => (
                     <span key={tech} className="project-card__tag" style={{ borderColor: `${project.color}40`, color: project.color }}>

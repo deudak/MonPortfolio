@@ -45,7 +45,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} aria-label="Navigation principale">
       <div className="navbar__container">
         <a href="#hero" className="navbar__logo" onClick={(e) => handleNavClick(e, 'hero')}>
-          <span className="navbar__logo-icon">DY</span>
+          <img src="/logo.png" alt="Logo" className="navbar__logo-img" />
           <span className="navbar__logo-text">DEUDAK</span>
         </a>
 
