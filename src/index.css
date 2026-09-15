@@ -12,23 +12,23 @@
   --bg-glass: rgba(255, 255, 255, 0.04);
   --bg-glass-strong: rgba(255, 255, 255, 0.08);
 
-  --accent-violet: #7c3aed;
-  --accent-violet-light: #a78bfa;
-  --accent-cyan: #06b6d4;
-  --accent-cyan-light: #22d3ee;
-  --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
-  --accent-glow-violet: rgba(124, 58, 237, 0.3);
-  --accent-glow-cyan: rgba(6, 182, 212, 0.3);
+  --accent-orange: #71879b;
+  --accent-orange-light: #a9bac8;
+  --accent-teal: #789b91;
+  --accent-teal-light: #b0c8bd;
+  --accent-gradient: linear-gradient(135deg, #71879b 0%, #789b91 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #8a9eae 0%, #91afa4 100%);
+  --accent-glow-orange: rgba(113, 135, 155, 0.2);
+  --accent-glow-teal: rgba(120, 155, 145, 0.2);
 
   --text-primary: #e2e8f0;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --text-accent: #a78bfa;
+  --text-accent: #b7c3c5;
 
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-light: rgba(255, 255, 255, 0.1);
-  --border-accent: rgba(124, 58, 237, 0.3);
+  --border-accent: rgba(137, 162, 166, 0.3);
 
   /* ── Typographie ── */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -62,7 +62,7 @@
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.15);
+  --shadow-glow: 0 0 40px rgba(113, 135, 155, 0.1);
 
   /* ── Layout ── */
   --max-width: 1200px;
@@ -163,7 +163,7 @@ button {
 }
 
 @keyframes typing-cursor {
-  0%, 100% { border-right-color: var(--accent-violet); }
+  0%, 100% { border-right-color: var(--accent-orange); }
   50% { border-right-color: transparent; }
 }
 
@@ -249,11 +249,11 @@ button {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-violet);
+  background: var(--accent-orange);
 }
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(124, 58, 237, 0.3);
+  background: rgba(113, 135, 155, 0.3);
   color: #fff;
 }

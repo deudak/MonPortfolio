@@ -1,4 +1,6 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { createElement } from 'react'
+import { Camera, ClipboardList, CloudSun, Code2, ExternalLink, Rocket, ShoppingCart, Sparkles } from 'lucide-react'
 import ProjectCarousel from './ProjectCarousel'
 
 const projects = [
@@ -7,10 +9,10 @@ const projects = [
     description:
       'Projet photo KamerWork avec galerie défilante horizontale pour valoriser les prises de vue et les réalisations visuelles.',
     technologies: ['React', 'CSS', 'LARAVEL', 'MYSQL', "VITE"],
-    color: '#ec4899',
+    color: '#9b879b',
     github: 'https://github.com/deudak',
     demo: '#',
-    icon: '📸',
+    icon: Camera,
     images: ['/kamerwork1.JPG', '/kamerwork2.JPG', '/kamerwork3.JPG', '/kamerwork4.JPG'],
   },
   {
@@ -18,10 +20,10 @@ const projects = [
     description:
       'Site haut de gamme Modellux, avec présentation de projet et photos en défilement horizontal pour un look élégant.',
     technologies: ['React', 'CSS', 'PHP', 'MYSQL'],
-    color: '#f59e0b',
+    color: '#b09a72',
     github: 'https://github.com/deudak',
     demo: '#',
-    icon: '✨',
+    icon: Sparkles,
     images: ['/modellux.JPG', '/modellux2.JPG'],
   },
   {
@@ -29,10 +31,10 @@ const projects = [
     description:
       'Application de gestion de stock collaborative avec authentification, tableaux de bord, et notifications en temps réel.',
     technologies: ['javascript', 'Bootstrap', 'MYSQL', 'PHP'],
-    color: '#7c3aed',
+    color: '#9a8f7b',
     github: 'https://github.com/deudak',
     demo: '#',
-    icon: '📋',
+    icon: ClipboardList,
     images : ['/geststock1.JPG', '/geststock2.JPG'],
   },
   {
@@ -40,30 +42,41 @@ const projects = [
     description:
       'Application météo interactive affichant les prévisions en temps réel avec géolocalisation et visualisations graphiques.',
     technologies: ['JavaScript', 'API REST', 'CSS3', 'Chart.js'],
-    color: '#06b6d4',
+    color: '#7899a3',
     github: 'https://github.com/deudak',
     demo: '#',
-    icon: '🌦️',
+    icon: CloudSun,
   },
   {
     title: 'E-Shop Platform',
     description:
       'Plateforme e-commerce complète avec panier, système de paiement, gestion des stocks et tableau de bord administrateur.',
     technologies: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript'],
-    color: '#10b981',
+    color: '#7fa394',
     github: 'https://github.com/deudak',
     demo: '#',
-    icon: '🛒',
+    icon: ShoppingCart,
   },
   {
     title: 'Portfolio Personnel',
     description:
       'Ce portfolio moderne et responsive, conçu avec React et Vite, pour présenter mon parcours et mes réalisations.',
     technologies: ['React', 'Vite', 'CSS3', 'Responsive'],
-    color: '#f59e0b',
+    color: '#a9987d',
     github: 'https://github.com/deudak',
     demo: '#',
-    icon: '🚀',
+    icon: Rocket,
+  },
+  {
+    title: 'Cahier Craie',
+    description:
+      'Plateforme éducative en ligne pensée pour faciliter l’accès aux ressources et accompagner l’apprentissage.',
+    technologies: ['Next.js', 'React', 'CSS'],
+    color: '#789b91',
+    github: 'https://github.com/deudak',
+    demo: 'https://cahiercraie.com',
+    icon: ClipboardList,
+    images: ['/cahiercraie1.JPG', '/cahiercraie2.JPG'],
   },
 ]
 
@@ -84,7 +97,7 @@ export default function Projects() {
         </div>
 
         <div className="projects__grid">
-          {projects.map((project, index) => (
+          {projects.map(({ icon: Icon, ...project }, index) => (
             <article
               key={project.title}
               className="project-card scroll-reveal"
@@ -95,7 +108,7 @@ export default function Projects() {
                 style={{ background: `linear-gradient(135deg, ${project.color}22, ${project.color}08)` }}
               >
                 <span className="project-card__icon" style={{ background: `${project.color}20`, color: project.color }}>
-                  {project.icon}
+                  {createElement(Icon, { size: 24, strokeWidth: 2 })}
                 </span>
                 <div className="project-card__links">
                   <a
@@ -105,9 +118,7 @@ export default function Projects() {
                     className="project-card__link"
                     aria-label={`Voir ${project.title} sur GitHub`}
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
+                    <Code2 size={18} />
                   </a>
                   <a
                     href={project.demo}
@@ -116,9 +127,7 @@ export default function Projects() {
                     className="project-card__link"
                     aria-label={`Voir la démo de ${project.title}`}
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
+                    <ExternalLink size={18} />
                   </a>
                 </div>
               </div>

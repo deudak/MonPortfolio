@@ -1,9 +1,10 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { Code2, GraduationCap } from 'lucide-react'
 
 const experiences = [
   {
-    period: '2025 — Présent',
-    title: 'Étudiant en Génie Logiciel — 2ème année',
+    period: '2026 — Présent',
+    title: 'Niveau 3 — Génie Logiciel',
     organization: 'Formation Universitaire',
     description:
       'Approfondissement des concepts d\'architecture logicielle, bases de données avancées, développement web full-stack, et gestion de projets agile. Réalisation de projets en équipe avec des méthodologies professionnelles.',
@@ -11,8 +12,8 @@ const experiences = [
     type: 'education',
   },
   {
-    period: '2024 — 2025',
-    title: 'Étudiant en Génie Logiciel — 1ère année',
+    period: '2025 — 2026',
+    title: 'BTS — Génie Logiciel',
     organization: 'Formation Universitaire',
     description:
       'Acquisition des fondamentaux en programmation (Java, Python, C), algorithmique, structures de données, et introduction au développement web. Premiers projets académiques.',
@@ -56,7 +57,7 @@ export default function Experience() {
               style={{ transitionDelay: `${index * 0.15}s` }}
             >
               <div className="timeline__dot" aria-hidden="true">
-                <span>{exp.type === 'education' ? '🎓' : '💻'}</span>
+                {exp.type === 'education' ? <GraduationCap size={20} /> : <Code2 size={20} />}
               </div>
 
               <div className="timeline__card">

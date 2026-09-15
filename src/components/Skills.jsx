@@ -1,19 +1,22 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { createElement } from 'react'
+import { Database, MonitorCog, Server, Wrench } from 'lucide-react'
 
 const skillCategories = [
   {
     title: 'Frontend',
-    icon: '🎨',
+    icon: MonitorCog,
     skills: [
       { name: 'HTML5 / CSS3', level: 90 },
       { name: 'JavaScript', level: 85 },
       { name: 'React', level: 75 },
+      { name: 'Next.js', level: 70 },
       { name: 'Responsive Design', level: 85 },
     ],
   },
   {
     title: 'Backend',
-    icon: '⚙️',
+    icon: Server,
     skills: [
       { name: 'Java', level: 80 },
       { name: 'Python', level: 85 },
@@ -23,7 +26,7 @@ const skillCategories = [
   },
   {
     title: 'Base de données',
-    icon: '🗄️',
+    icon: Database,
     skills: [
       { name: 'MySQL', level: 80 },
       { name: 'MongoDB', level: 60 },
@@ -33,7 +36,7 @@ const skillCategories = [
   },
   {
     title: 'Outils & DevOps',
-    icon: '🛠️',
+    icon: Wrench,
     skills: [
       { name: 'Git / GitHub', level: 85 },
       { name: 'VS Code', level: 90 },
@@ -60,19 +63,19 @@ export default function Skills() {
         </div>
 
         <div className="skills__grid">
-          {skillCategories.map((category, catIndex) => (
+          {skillCategories.map(({ icon: Icon, title, skills }, catIndex) => (
             <div
-              key={category.title}
+              key={title}
               className="skills__card scroll-reveal"
               style={{ transitionDelay: `${catIndex * 0.1}s` }}
             >
               <div className="skills__card-header">
-                <span className="skills__card-icon" aria-hidden="true">{category.icon}</span>
-                <h3 className="skills__card-title">{category.title}</h3>
+                <span className="skills__card-icon" aria-hidden="true">{createElement(Icon, { size: 23 })}</span>
+                <h3 className="skills__card-title">{title}</h3>
               </div>
 
               <div className="skills__list">
-                {category.skills.map((skill) => (
+                {skills.map((skill) => (
                   <div key={skill.name} className="skills__item">
                     <div className="skills__item-header">
                       <span className="skills__item-name">{skill.name}</span>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { ArrowRight, Download } from 'lucide-react'
 
 const titles = [
   'Étudiant en Génie Logiciel',
@@ -19,8 +20,10 @@ export default function Hero() {
     if (!isDeleting && displayText === currentTitle) {
       timeout = setTimeout(() => setIsDeleting(true), 2000)
     } else if (isDeleting && displayText === '') {
-      setIsDeleting(false)
-      setTitleIndex((prev) => (prev + 1) % titles.length)
+      timeout = setTimeout(() => {
+        setIsDeleting(false)
+        setTitleIndex((prev) => (prev + 1) % titles.length)
+      }, 0)
     } else {
       const speed = isDeleting ? 40 : 80
       timeout = setTimeout(() => {
@@ -50,7 +53,6 @@ export default function Hero() {
 
       <div className="hero__content">
         <p className="hero__greeting">
-          <span className="hero__wave" aria-hidden="true">👋</span>
           Bonjour, je suis
         </p>
 
@@ -73,20 +75,14 @@ export default function Hero() {
         <div className="hero__cta">
           <a href="#contact" className="btn btn--primary" onClick={(e) => handleScroll(e, 'contact')}>
             <span>Me contacter</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+            <ArrowRight size={20} />
           </a>
           <a href="#projects" className="btn btn--secondary" onClick={(e) => handleScroll(e, 'projects')}>
             <span>Voir mes projets</span>
           </a>
-          <a href="/CV_Deudak_Yangoue_Miguel.pdf" download="CV_Deudak_Yangoue_Miguel.pdf" className="btn btn--secondary">
+          <a href="/CV%20DEUDAK%20YANGOUE%20MIGUEL.pdf" download="CV DEUDAK YANGOUE MIGUEL.pdf" className="btn btn--secondary">
             <span>Télécharger mon CV</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
+            <Download size={20} />
           </a>
         </div>
 

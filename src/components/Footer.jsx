@@ -67,10 +67,11 @@ export default function Footer() {
         <div className="footer__bottom">
           <p className="footer__copyright">
             © {new Date().getFullYear()} DEUDAK YANGOUE MIGUEL — Fait avec
-            <span className="footer__heart" aria-label="amour"> ❤️</span> et React.
+            <Heart className="footer__heart" size={16} fill="currentColor" aria-label="amour" /> et React.
           </p>
         </div>
       </div>
     </footer>
   )
 }
+import { Heart } from 'lucide-react'
